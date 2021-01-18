@@ -18,6 +18,7 @@ dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-web'
 	compile group: 'org.postgresql', name: 'postgresql', version: '42.2.18'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+	compile 'org.projectlombok:lombok:1.18.16'
 }
 
 test {

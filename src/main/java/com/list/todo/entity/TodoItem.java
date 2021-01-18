@@ -2,8 +2,10 @@ package com.list.todo.entity;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import java.time.LocalDate;
 
@@ -12,7 +14,6 @@ import java.time.LocalDate;
 public class TodoItem {
     @Id
     @GeneratedValue
-    @Column(name = "id")
     private int id;
     @Column(name = "title")
     private String title;
@@ -24,6 +25,11 @@ public class TodoItem {
     private LocalDate dueDate;
     @Column(name = "date_of_creation")
     private LocalDate dateOfCreation;
+    @ManyToOne(fetch = FetchType.EAGER)
+    private TodoList todoList;
+
+    public TodoItem() {
+    }
 
     public LocalDate getDateOfCreation() {
         return dateOfCreation;
@@ -33,16 +39,12 @@ public class TodoItem {
         this.dateOfCreation = dateOfCreation;
     }
 
-    public TodoItem(int id, String title, String description, boolean done, LocalDate dueDate, LocalDate dateOfCreation) {
-        this.id = id;
-        this.title = title;
-        this.description = description;
-        this.done = done;
-        this.dueDate = dueDate;
-        this.dateOfCreation = dateOfCreation;
+    public TodoList getTodoList() {
+        return todoList;
     }
 
-    public TodoItem() {
+    public void setTodoList(TodoList listId) {
+        this.todoList = listId;
     }
 
     public int getId() {
